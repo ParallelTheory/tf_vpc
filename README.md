@@ -30,4 +30,4 @@ Outputs
 * public_subnet_arn
 
 
-_Copyright 2019 M. Holger / Parallel Theory LLC, All Rights Reserved
+_Copyright 2019 M. Holger / Parallel Theory LLC, All Rights Reserved_
