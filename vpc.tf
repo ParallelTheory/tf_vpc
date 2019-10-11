@@ -4,9 +4,9 @@ resource "aws_vpc" "primary_vpc" {
   cidr_block = var.vpc_cidr
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-primary_vpc"
+    Name      = "${var.project_name}-${terraform.workspace}-primary_vpc"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
@@ -19,9 +19,9 @@ resource "aws_subnet" "primary_subnet" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-primary_subnet"
+    Name      = "${var.project_name}-${terraform.workspace}-primary_subnet"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
@@ -31,14 +31,14 @@ resource "aws_subnet" "public_subnet" {
   availability_zone = element(var.subnet_az, 0)
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-public_subnet"
+    Name      = "${var.project_name}-${terraform.workspace}-public_subnet"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
 resource "aws_security_group" "default_sg" {
-  name        = "${var.project_name}-${var.project_workspace}-default_sg"
+  name        = "${var.project_name}-${terraform.workspace}-default_sg"
   description = "Default SG to allow traffic"
   vpc_id      = aws_vpc.primary_vpc.id
 
@@ -57,9 +57,9 @@ resource "aws_security_group" "default_sg" {
   }
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-sg_peers"
+    Name      = "${var.project_name}-${terraform.workspace}-sg_peers"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
@@ -72,9 +72,9 @@ resource "aws_vpc_peering_connection" "vpc_peer" {
   auto_accept = false
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-${element(var.peer_vpc_ids, count.index)}-vpc_peer"
+    Name      = "${var.project_name}-${terraform.workspace}-${element(var.peer_vpc_ids, count.index)}-vpc_peer"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
@@ -83,9 +83,9 @@ resource "aws_eip" "nat_eip" {
   depends_on = [aws_internet_gateway.igw]
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-nat_eip"
+    Name      = "${var.project_name}-${terraform.workspace}-nat_eip"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
@@ -93,9 +93,9 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.primary_vpc.id
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-igw"
+    Name      = "${var.project_name}-${terraform.workspace}-igw"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
@@ -104,9 +104,9 @@ resource "aws_nat_gateway" "natgw" {
   subnet_id     = aws_subnet.public_subnet.id
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-natgw"
+    Name      = "${var.project_name}-${terraform.workspace}-natgw"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
@@ -119,9 +119,9 @@ resource "aws_default_route_table" "public_routes" {
   }
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-public_routes"
+    Name      = "${var.project_name}-${terraform.workspace}-public_routes"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 
@@ -129,9 +129,9 @@ resource "aws_route_table" "nat_routes" {
   vpc_id = aws_vpc.primary_vpc.id
 
   tags = {
-    Name      = "${var.project_name}-${var.project_workspace}-nat_routes"
+    Name      = "${var.project_name}-${terraform.workspace}-nat_routes"
     Project   = var.project_name
-    Workspace = var.project_workspace
+    Workspace = terraform.workspace
   }
 }
 

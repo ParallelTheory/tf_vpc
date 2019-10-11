@@ -12,7 +12,6 @@ Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | project\_name | Name of associated project, for resource tagging | string | `...` | yes |
-| project\_workspace | Name of associated terraform workspace, for tagging | string | `...` | yes |
 | vpc\_cidr | CIDR block for new VPC | string | `"10.0.0.0/16"` | no |
 | subnets | List of private subnets to create within new VPC | list | `["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]` | no |
 | subnet_az | List of availability zones, one per subnet | list | `["us-east-1a", "us-east-1b", "us-east-1c"]` | no |
@@ -47,7 +46,6 @@ module "aws_vpc" {
   version           = "0.0.1"
 
   project_name      = "example_vpc"
-  project_workspace = "dev"
   vpc_cidr          = "10.0.0.0/16"
   subnets           = ["10.0.1.0/24"]
   subnet_az         = ["us-east-1c"]
