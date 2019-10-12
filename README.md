@@ -37,19 +37,22 @@ Example
 -------
 ```
 provider "aws" {
-  region = "us-east-1"
+  region  = "us-east-1"
   version = "~> 2.31.0"
 }
 
 module "aws_vpc" {
-  source            = "ParallelTheory/tf_vpc"
-  version           = "0.0.1"
+  source = "github.com/ParallelTheory/tf_vpc"
 
-  project_name      = "example_vpc"
-  vpc_cidr          = "10.0.0.0/16"
-  subnets           = ["10.0.1.0/24"]
-  subnet_az         = ["us-east-1c"]
-  public_cidr       = "10.0.254.0/28"
+  project_name = "example_vpc"
+  vpc_cidr     = "10.0.0.0/16"
+  subnets      = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  subnet_az    = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  public_cidr  = "10.0.254.0/28"
+
+  peer_vpc_cidrs   = ["10.1.0.0/24"]
+  peer_vpc_ids     = ["vpc-27cda542"]
+  peer_vpc_regions = ["us-east-1"]
 }
 ```
 
