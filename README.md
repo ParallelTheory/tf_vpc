@@ -29,8 +29,8 @@ Outputs
 | vpc\_arn | AWS ARN of new VPC | string |
 | subnet\_id | List of new private subnet IDs | list |
 | subnet\_arn | List of new private subnet ARNs | list |
-| public\_subnet\_id | Resource ID of new public subet |
-| public\_subnet\_arn | AWS ARN of new public subnet |
+| public\_subnet\_id | Resource ID of new public subet | string |
+| public\_subnet\_arn | AWS ARN of new public subnet | string |
 
 
 Example
