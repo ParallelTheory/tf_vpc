@@ -11,11 +11,11 @@ Inputs
 ------
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| project\_name | Name of associated project, for resource tagging | string | `...` | yes |
-| vpc\_cidr | CIDR block for new VPC | string | `"10.0.0.0/16"` | no |
-| subnets | List of private subnets to create within new VPC | list | `["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]` | no |
-| subnet_az | List of availability zones, one per subnet | list | `["us-east-1a", "us-east-1b", "us-east-1c"]` | no |
-| public_cidr | CIDR block for "public" subnet to house Internet gateway | string | `"10.0.254.0/24"` | no |
+| project\_name | Name of associated project, for resource tagging | string | nil | yes |
+| vpc\_cidr | CIDR block for new VPC | string | `"10.0.0.0/16"` | yes |
+| subnets | List of private subnets to create within new VPC | list | `["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]` | yes |
+| subnet_az | List of availability zones, one per subnet | list | `["us-east-1a", "us-east-1b", "us-east-1c"]` | yes |
+| public_cidr | CIDR block for "public" subnet to house Internet gateway | string | `"10.0.254.0/24"` | yes |
 | peer_vpc_cidrs | List of VPC CIDR blocks with which to establish peering | list | nil | no |
 | peer_vpc_ids | List of VPC resource IDs with which to establish peering | list | nil | no |
 | peer_vpc_regions | List of regions within which peer VPCs exist | list | nil | no |
